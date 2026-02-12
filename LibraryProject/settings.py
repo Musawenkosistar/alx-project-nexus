@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=ze4lrgl4mu$bhkv*x$6ri79%oglgpzc3&f%4*o5f#v=e*mxzn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['Library.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     'reviews',
     'rest_framework',
     'drf_spectacular',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -152,3 +154,12 @@ REST_FRAMEWORK = {
     ),
 }
 
+CORS_ALLOW_ALL_ORIGINS = True
+
+import os
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+
+# Directory where `collectstatic` will collect all static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
